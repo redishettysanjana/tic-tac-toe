@@ -26,3 +26,22 @@ h1 {
     margin-bottom: 20px;
     color: #888787;
 }
+
+.status {
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: #555;
+}
+
+.board {
+    display: grid;
+
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+
+    gap: 8px;
+
+    justify-content: center;
+
+    margin-bottom: 20px;
+}
