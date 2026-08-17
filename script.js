@@ -3,6 +3,7 @@ let gameOver = false;
 
 const cells = document.querySelectorAll(".cell");
 const statusText = document.querySelector(".status");
+const restartButton = document.querySelector(".reset-btn");
 
 const winningCombinations = [
     [0, 1, 2],
@@ -30,7 +31,8 @@ cells.forEach(function(cell) {
 
         checkWinner();
 
-        // If someone won, don't switch the player
+        checkDraw();
+
         if (gameOver) {
             return;
         }
@@ -48,6 +50,7 @@ cells.forEach(function(cell) {
     });
 
 });
+
 
 function checkWinner() {
 
@@ -71,3 +74,37 @@ function checkWinner() {
     });
 
 }
+
+
+function checkDraw() {
+
+    let allFilled = true;
+
+    cells.forEach(function(cell) {
+
+        if (cell.textContent === "") {
+            allFilled = false;
+        }
+
+    });
+
+    if (allFilled && !gameOver) {
+        statusText.textContent = "It's a Draw!";
+        gameOver = true;
+    }
+
+}
+
+
+restartButton.addEventListener("click", function() {
+
+    cells.forEach(function(cell) {
+        cell.textContent = "";
+    });
+
+    currentPlayer = "X";
+    gameOver = false;
+
+    statusText.textContent = "Player X's turn";
+
+});
