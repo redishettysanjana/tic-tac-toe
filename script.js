@@ -3,7 +3,7 @@ let gameOver = false;
 
 const cells = document.querySelectorAll(".cell");
 const statusText = document.querySelector(".status");
-const restartButton = document.querySelector(".reset-btn");
+const restartButton = document.querySelector(".restart-btn");
 
 const winningCombinations = [
     [0, 1, 2],
@@ -26,7 +26,6 @@ cells.forEach(function(cell) {
             return;
         }
 
-        // Put X or O
         cell.textContent = currentPlayer;
 
         checkWinner();
@@ -37,14 +36,12 @@ cells.forEach(function(cell) {
             return;
         }
 
-        // Switch player
         if (currentPlayer === "X") {
             currentPlayer = "O";
         } else {
             currentPlayer = "X";
         }
 
-        // Update turn text
         statusText.textContent = `Player ${currentPlayer}'s turn`;
 
     });
@@ -68,6 +65,10 @@ function checkWinner() {
 
             statusText.textContent = `Player ${cells[a].textContent} wins!`;
 
+            cells[a].classList.add("winner");
+            cells[b].classList.add("winner");
+            cells[c].classList.add("winner");
+
             gameOver = true;
         }
 
@@ -89,7 +90,7 @@ function checkDraw() {
     });
 
     if (allFilled && !gameOver) {
-        statusText.textContent = "It's a Draw!";
+        statusText.textContent = "It's a draw!";
         gameOver = true;
     }
 
@@ -100,6 +101,8 @@ restartButton.addEventListener("click", function() {
 
     cells.forEach(function(cell) {
         cell.textContent = "";
+
+        cell.classList.remove("winner");
     });
 
     currentPlayer = "X";

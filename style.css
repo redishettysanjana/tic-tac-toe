@@ -71,6 +71,12 @@ h1 {
     transition: 0.3s;
 }
 
-.reset-btn:hover {
+.restart-btn:hover {
     background-color: #4039f1;
+}
+
+.cell.winner {
+    background-color: #555;
+    color: white;
+    transform: scale(1.05);
 }
