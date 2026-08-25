@@ -1,9 +1,16 @@
 let currentPlayer = "X";
 let gameOver = false;
+let xScore = 0;
+let oScore = 0;
+let drawScore = 0;
 
 const cells = document.querySelectorAll(".cell");
 const statusText = document.querySelector(".status");
 const restartButton = document.querySelector(".restart-btn");
+
+const xScoreText = document.querySelector("#x-score");
+const oScoreText = document.querySelector("#o-score");
+const drawScoreText = document.querySelector("#draw-score");
 
 const winningCombinations = [
     [0, 1, 2],
@@ -16,9 +23,9 @@ const winningCombinations = [
     [2, 4, 6]
 ];
 
-cells.forEach(function(cell) {
+cells.forEach(function (cell) {
 
-    cell.addEventListener("click", function() {
+    cell.addEventListener("click", function () {
 
         // Don't allow clicking an already filled cell
         // or clicking after the game is over
@@ -51,7 +58,7 @@ cells.forEach(function(cell) {
 
 function checkWinner() {
 
-    winningCombinations.forEach(function(combination) {
+    winningCombinations.forEach(function (combination) {
 
         const a = combination[0];
         const b = combination[1];
@@ -81,7 +88,7 @@ function checkDraw() {
 
     let allFilled = true;
 
-    cells.forEach(function(cell) {
+    cells.forEach(function (cell) {
 
         if (cell.textContent === "") {
             allFilled = false;
@@ -97,9 +104,9 @@ function checkDraw() {
 }
 
 
-restartButton.addEventListener("click", function() {
+restartButton.addEventListener("click", function () {
 
-    cells.forEach(function(cell) {
+    cells.forEach(function (cell) {
         cell.textContent = "";
 
         cell.classList.remove("winner");

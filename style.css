@@ -121,3 +121,17 @@ h1 {
         margin-top: 5px;
     }
 }
+
+.score {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.score span {
+    background-color: #222;
+    padding: 8px;
+    border-radius: 5px;
+}
