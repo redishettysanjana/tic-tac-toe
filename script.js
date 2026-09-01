@@ -65,16 +65,19 @@ function checkWinner() {
         const c = combination[2];
 
         if (
-            cells[a].textContent !== "" &&
             cells[a].textContent === cells[b].textContent &&
-            cells[a].textContent === cells[c].textContent
+            cells[b].textContent === cells[c].textContent &&
+            cells[a].textContent !== ""
         ) {
-
             statusText.textContent = `Player ${cells[a].textContent} wins!`;
 
-            cells[a].classList.add("winner");
-            cells[b].classList.add("winner");
-            cells[c].classList.add("winner");
+            if (cells[a].textContent === "X") {
+                xScore++;
+                xScoreText.textContent = xScore;
+            } else {
+                oScore++;
+                oScoreText.textContent = oScore;
+            }
 
             gameOver = true;
         }
