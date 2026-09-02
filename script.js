@@ -101,6 +101,10 @@ function checkDraw() {
 
     if (allFilled && !gameOver) {
         statusText.textContent = "It's a draw!";
+
+        drawScore++;
+        drawScoreText.textContent = drawScore;
+
         gameOver = true;
     }
 
