@@ -7,6 +7,7 @@ let drawScore = 0;
 const cells = document.querySelectorAll(".cell");
 const statusText = document.querySelector(".status");
 const restartButton = document.querySelector(".restart-btn");
+const resetScoreButton = document.querySelector(".reset-score-btn");
 
 const xScoreText = document.querySelector("#x-score");
 const oScoreText = document.querySelector("#o-score");
@@ -55,7 +56,6 @@ cells.forEach(function (cell) {
 
 });
 
-
 function checkWinner() {
 
     winningCombinations.forEach(function (combination) {
@@ -86,7 +86,6 @@ function checkWinner() {
 
 }
 
-
 function checkDraw() {
 
     let allFilled = true;
@@ -110,7 +109,6 @@ function checkDraw() {
 
 }
 
-
 restartButton.addEventListener("click", function () {
 
     cells.forEach(function (cell) {
@@ -124,4 +122,14 @@ restartButton.addEventListener("click", function () {
 
     statusText.textContent = "Player X's turn";
 
+});
+
+resetScoreButton.addEventListener("click", function() {
+    xScore = 0;
+    oScore = 0;
+    drawScore = 0;
+
+    xScoreText.textContent = xScore;
+    oScoreText.textContent = oScore;
+    drawScoreText.textContent = drawScore;
 });
