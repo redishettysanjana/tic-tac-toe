@@ -66,7 +66,6 @@ h1 {
 
 .cell.winner {
     background-color: #555;
-    color: white;
 }
 
 .cell.winner:hover {
@@ -99,10 +98,13 @@ h1 {
 @media (max-width: 500px) {
 
     .board {
-        grid-template-columns: repeat(3, 80px);
-        grid-template-rows: repeat(3, 80px);
-        gap: 6px;
-        margin-bottom: 25px;
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(3, 100px);
+        grid-template-rows: repeat(3, 100px);
+        gap: 8px;
+        justify-content: center;
+        margin-bottom: 20px;
     }
 
     .cell {
@@ -159,4 +161,38 @@ h1 {
 
 .reset-score-btn:active {
     transform: scale(0.95);
+}
+
+.status.win {
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.status.draw {
+    color: #ffcc66;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.board.game-over .cell {
+    visibility: hidden;
+    transition: none;
+}
+
+.result-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #555;
+    color: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    white-space: nowrap;
+    display: none;
 }

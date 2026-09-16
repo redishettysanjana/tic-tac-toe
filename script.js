@@ -8,6 +8,8 @@ const cells = document.querySelectorAll(".cell");
 const statusText = document.querySelector(".status");
 const restartButton = document.querySelector(".restart-btn");
 const resetScoreButton = document.querySelector(".reset-score-btn");
+const resultMessage = document.querySelector(".result-message");
+const board = document.querySelector(".board");
 
 const xScoreText = document.querySelector("#x-score");
 const oScoreText = document.querySelector("#o-score");
@@ -28,8 +30,6 @@ cells.forEach(function (cell) {
 
     cell.addEventListener("click", function () {
 
-        // Don't allow clicking an already filled cell
-        // or clicking after the game is over
         if (cell.textContent !== "" || gameOver) {
             return;
         }
@@ -50,7 +50,8 @@ cells.forEach(function (cell) {
             currentPlayer = "X";
         }
 
-        statusText.textContent = `Player ${currentPlayer}'s turn`;
+        statusText.textContent = `Player ${cells[a].textContent} wins!`;
+        statusText.classList.add("win");
 
     });
 
@@ -69,7 +70,10 @@ function checkWinner() {
             cells[b].textContent === cells[c].textContent &&
             cells[a].textContent !== ""
         ) {
-            statusText.textContent = `Player ${cells[a].textContent} wins!`;
+            statusText.textContent = "Game Over!";
+
+            resultMessage.textContent = `Player ${cells[a].textContent} wins!`;
+            resultMessage.style.display = "block";
 
             if (cells[a].textContent === "X") {
                 xScore++;
@@ -80,6 +84,7 @@ function checkWinner() {
             }
 
             gameOver = true;
+            board.classList.add("game-over");
         }
 
     });
@@ -99,12 +104,16 @@ function checkDraw() {
     });
 
     if (allFilled && !gameOver) {
-        statusText.textContent = "It's a draw!";
+        statusText.textContent = "Game Over!";
+        resultMessage.textContent = "It's a draw!";
+        resultMessage.style.display = "block";
+        statusText.classList.add("draw");
 
         drawScore++;
         drawScoreText.textContent = drawScore;
 
         gameOver = true;
+        board.classList.add("game-over");
     }
 
 }
@@ -114,17 +123,20 @@ restartButton.addEventListener("click", function () {
     cells.forEach(function (cell) {
         cell.textContent = "";
 
-        cell.classList.remove("winner");
+        cell.classList.remove("winner", "x", "o");
     });
 
     currentPlayer = "X";
     gameOver = false;
 
     statusText.textContent = "Player X's turn";
+    statusText.classList.remove("win", "draw");
+    resultMessage.style.display = "none";
+    board.classList.remove("game-over");
 
 });
 
-resetScoreButton.addEventListener("click", function() {
+resetScoreButton.addEventListener("click", function () {
     xScore = 0;
     oScore = 0;
     drawScore = 0;
