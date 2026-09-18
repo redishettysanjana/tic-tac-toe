@@ -196,3 +196,25 @@ h1 {
     white-space: nowrap;
     display: none;
 }
+
+.play-again-btn {
+    padding: 12px 28px;
+    font-size: 17px;
+    font-weight: bold;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.play-again-btn:hover {
+    background-color: #444;
+    transform: scale(1.05);
+}
+
+.play-again-btn:active {
+    transform: scale(0.95);
+}
